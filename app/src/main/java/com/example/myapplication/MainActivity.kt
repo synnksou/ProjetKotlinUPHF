@@ -19,11 +19,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
         mAuth = FirebaseAuth.getInstance();
-
         val btnSignup = findViewById(R.id.btnSignup) as Button;
         btnSignup.setOnClickListener {
             val intent=Intent(this,SignupActivity::class.java)
             startActivity(intent);
+            finish();
         }
     }
 

@@ -11,22 +11,20 @@
         android:id="@+id/Email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/email" />
+        android:text="Email" />
 
     <EditText
         android:id="@+id/editTextEmail"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="textPersonName"
-        tools:ignore="LabelFor,TextFields"
-        android:importantForAutofill="no" />
+        android:inputType="textPersonName" />
 
     <TextView
         android:id="@+id/password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/mot_de_passe" />
+        android:text="Mot de passe" />
 
     <EditText
         android:id="@+id/editTextPassword"
@@ -34,7 +32,7 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:inputType="textPassword"
-        android:importantForAutofill="no" />
+        android:autofillHints="" />
 
     <Button
         android:id="@+id/btnSignup"
