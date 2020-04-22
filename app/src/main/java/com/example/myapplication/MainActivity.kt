@@ -13,15 +13,21 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 
 class MainActivity : AppCompatActivity() {
-    private var mAuth: FirebaseAuth? = null
+    private lateinit var auth: FirebaseAuth
+    public override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+        val currentUser = auth.currentUser
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
-        mAuth = FirebaseAuth.getInstance();
         val btnSignup = findViewById(R.id.btnSignup) as Button;
+        auth = FirebaseAuth.getInstance()
         btnSignup.setOnClickListener {
-            val intent=Intent(this,SignupActivity::class.java)
+            val intent=Intent(this,SigninActivity::class.java)
             startActivity(intent);
             finish();
         }
@@ -42,5 +48,6 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
 
 }

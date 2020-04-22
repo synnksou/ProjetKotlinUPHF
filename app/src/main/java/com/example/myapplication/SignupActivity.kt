@@ -19,8 +19,7 @@ class SignupActivity : AppCompatActivity() {
         val editTextEmail = findViewById<EditText>(R.id.editTextEmail)
         val editTextPassword = findViewById<EditText>(R.id.editTextEmail)
         val btn = findViewById<Button>(R.id.btnSignup)
-        mAuth = FirebaseAuth.getInstance();
-        btn.setOnClickListener { onClickButton(editTextEmail.toString(),editTextPassword.toString()) }
+        btn.setOnClickListener { onClickButton(editTextEmail.text.toString(),editTextPassword.text.toString()) }
     }
 
     private fun onClickButton(email:String, password:String){
