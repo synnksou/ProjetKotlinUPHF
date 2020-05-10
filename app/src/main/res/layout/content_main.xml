@@ -10,7 +10,6 @@
 
     <Button
         android:id="@+id/btnSignup"
-        style="@style/FirebaseUI.Button.AccountChooser"
         android:layout_width="132dp"
         android:layout_height="37dp"
         android:layout_marginStart="140dp"
@@ -35,7 +34,6 @@
 
     <Button
         android:id="@+id/btnSignin"
-        style="@style/FirebaseUI.Button.AccountChooser"
         android:layout_width="132dp"
         android:layout_height="37dp"
         android:layout_marginStart="140dp"

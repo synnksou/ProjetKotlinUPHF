@@ -68,7 +68,6 @@
 
     <Button
         android:id="@+id/buttonFb"
-        style="@style/FirebaseUI.Button.AccountChooser.FacebookButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="97dp"
@@ -83,7 +82,6 @@
 
     <Button
         android:id="@+id/buttonTwi"
-        style="@style/FirebaseUI.Button.AccountChooser.TwitterButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="97dp"
