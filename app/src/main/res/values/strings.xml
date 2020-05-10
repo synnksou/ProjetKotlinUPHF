@@ -1,4 +1,13 @@
 <resources>
-    <string name="app_name">My Application</string>
-    <string name="action_settings">Settings</string>
+    <string name="app_name">Y Discount</string>
+    <string name="action_settings">Options</string>
+    <string name="buttonSigup">S\'inscrire</string>
+    <string name="cr_e_le_compte">Crée le compte</string>
+    <string name="mot_de_passe">Mot de passe</string>
+    <string name="email">Email</string>
+    <string name="my_app_id">kotlins4-eynak</string>
+    <string name="profil">Profil</string>
+    <string name="recherche">Recherche</string>
+    <string name="information">Information</string>
+    <string name="accueil">Accueil</string>
 </resources>

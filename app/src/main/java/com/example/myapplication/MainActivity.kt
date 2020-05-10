@@ -1,23 +1,67 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
-import androidx.appcompat.app.AppCompatActivity
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-
+import android.view.View
+import android.widget.Button
+import androidx.appcompat.app.AppCompatActivity
+import com.google.android.material.snackbar.Snackbar
+import com.mongodb.stitch.android.core.Stitch
+import com.mongodb.stitch.android.services.mongodb.remote.RemoteMongoClient
+import com.mongodb.stitch.core.auth.providers.anonymous.AnonymousCredential
 import kotlinx.android.synthetic.main.activity_main.*
+import org.w3c.dom.Document
+
 
 class MainActivity : AppCompatActivity() {
+    public override fun onStart() {
+        super.onStart()
+        // Check if user is signed in (non-null) and update UI accordingly.
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         setSupportActionBar(toolbar)
+        val btnSignup = findViewById(R.id.btnSignup) as Button;
 
-        fab.setOnClickListener { view ->
-            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                .setAction("Action", null).show()
+        /*
+        Stitch.initializeDefaultAppClient(
+            resources.getString(R.string.my_app_id)
+        )
+        val stitchAppClient = Stitch.getDefaultAppClient()
+        stitchAppClient.auth.loginWithCredential(AnonymousCredential())
+            .addOnSuccessListener {
+                System.out.print("yo bg")
+            }
+
+        val mongoClient = stitchAppClient.getServiceClient(
+            RemoteMongoClient.factory,
+            "mongodb-atlas"
+        )
+
+        var myCollection = mongoClient.getDatabase("mongo").getCollection("users");
+       System.out.println("colelc ++++++++++ // ++ " + myCollection)
+        val newUser = org.bson.Document();
+        System.out.println("user : "+newUser)
+        newUser["name"] = "moicgogo"
+        System.out.println("user : "+newUser)
+       //newUser["pass"] = 123;
+
+        myCollection.insertOne(newUser)
+            .addOnSuccessListener {
+                Log.d("STITCH : ", "One document inserted")
+            }
+
+         */
+
+        btnSignup.setOnClickListener {
+            val intent=Intent(this,SigninActivity::class.java)
+            startActivity(intent);
+            finish();
         }
     }
 
@@ -36,4 +80,6 @@ class MainActivity : AppCompatActivity() {
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+
 }
