@@ -1,5 +1,6 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -25,30 +26,11 @@ class SigninActivity : AppCompatActivity() {
         val editTextPassword = findViewById<EditText>(R.id.editTextEmail)
         val btn = findViewById<Button>(R.id.btnSignup)
 
-        Stitch.initializeDefaultAppClient(
-            resources.getString(R.string.my_app_id)
-        )
-        val stitchAppClient = Stitch.getDefaultAppClient()
-        stitchAppClient.auth.loginWithCredential(AnonymousCredential())
-            .addOnSuccessListener {
-                System.out.print("yo bg")
-            }
 
-        val mongoClient = stitchAppClient.getServiceClient(
-            RemoteMongoClient.factory,
-            "mongodb-atlas"
-        )
-
-        var myCollection = mongoClient.getDatabase("mongo").getCollection("users");
-        val newUser = org.bson.Document();
-        var pseudo = "gogolebg"
-        newUser["name"] = pseudo;
-        newUser["pass"] = 123;
         btn.setOnClickListener {
-            myCollection.insertOne(newUser)
-                .addOnSuccessListener {
-                    Log.d("STITCH", "One document inserted")
-                }
+            val intent = Intent(this,HomeAcitivity::class.java)
+            startActivity(intent);
+            finish();
         }
 
     }

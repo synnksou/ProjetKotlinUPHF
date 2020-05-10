@@ -28,6 +28,10 @@
         <activity
             android:name=".SigninActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".HomeAcitivity"
+            android:screenOrientation="portrait"
+        android:configChanges="orientation"/>
     </application>
 
 </manifest>

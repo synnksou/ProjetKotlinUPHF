@@ -13,6 +13,7 @@ import com.mongodb.stitch.android.core.Stitch
 import com.mongodb.stitch.android.services.mongodb.remote.RemoteMongoClient
 import com.mongodb.stitch.core.auth.providers.anonymous.AnonymousCredential
 import kotlinx.android.synthetic.main.activity_main.*
+import org.w3c.dom.Document
 
 
 class MainActivity : AppCompatActivity() {
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         setSupportActionBar(toolbar)
         val btnSignup = findViewById(R.id.btnSignup) as Button;
 
+        /*
         Stitch.initializeDefaultAppClient(
             resources.getString(R.string.my_app_id)
         )
@@ -42,15 +44,19 @@ class MainActivity : AppCompatActivity() {
         )
 
         var myCollection = mongoClient.getDatabase("mongo").getCollection("users");
+       System.out.println("colelc ++++++++++ // ++ " + myCollection)
         val newUser = org.bson.Document();
-        var pseudo = "gogolebg"
-        newUser["name"] = pseudo;
-        newUser["pass"] = 123;
+        System.out.println("user : "+newUser)
+        newUser["name"] = "moicgogo"
+        System.out.println("user : "+newUser)
+       //newUser["pass"] = 123;
 
         myCollection.insertOne(newUser)
             .addOnSuccessListener {
-                Log.d("STITCH", "One document inserted")
+                Log.d("STITCH : ", "One document inserted")
             }
+
+         */
 
         btnSignup.setOnClickListener {
             val intent=Intent(this,SigninActivity::class.java)

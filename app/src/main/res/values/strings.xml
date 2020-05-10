@@ -6,4 +6,8 @@
     <string name="mot_de_passe">Mot de passe</string>
     <string name="email">Email</string>
     <string name="my_app_id">kotlins4-eynak</string>
+    <string name="profil">Profil</string>
+    <string name="recherche">Recherche</string>
+    <string name="information">Information</string>
+    <string name="accueil">Accueil</string>
 </resources>

@@ -3,15 +3,11 @@ package com.example.myapplication
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Button
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.mongodb.stitch.android.core.Stitch
-import com.mongodb.stitch.android.services.mongodb.remote.RemoteMongoClient
-import com.mongodb.stitch.core.auth.providers.anonymous.AnonymousCredential
-import kotlinx.android.synthetic.main.activity_main.*
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class HomeAcitivity : AppCompatActivity(){
@@ -20,35 +16,36 @@ class HomeAcitivity : AppCompatActivity(){
         // Check if user is signed in (non-null) and update UI accordingly.
     }
 
+    @SuppressLint("WrongConstant")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_layout)
-        setSupportActionBar(toolbar)
-        Stitch.initializeDefaultAppClient(
-            resources.getString(R.string.my_app_id)
-        )
-        val stitchAppClient = Stitch.getDefaultAppClient()
-        stitchAppClient.auth.loginWithCredential(AnonymousCredential())
-            .addOnSuccessListener {
-                System.out.print("yo bg")
-            }
+        val bottomNavigationView = findViewById(R.id.bottomNav) as BottomNavigationView
 
-        val mongoClient = stitchAppClient.getServiceClient(
-            RemoteMongoClient.factory,
-            "mongodb-atlas"
-        )
-
-        var myCollection = mongoClient.getDatabase("mongo").getCollection("users");
-        System.out.println("collection : "+myCollection);
-        val newUser = org.bson.Document();
-        var pseudo = "gogolebg"
-        newUser["name"] = pseudo;
-        newUser["pass"] = 123;
-
-            myCollection.insertOne(newUser)
-                .addOnSuccessListener {
-                    Log.d("STITCH", "One document inserted")
+        bottomNavigationView.setOnNavigationItemSelectedListener { item: MenuItem ->
+            return@setOnNavigationItemSelectedListener when (item.itemId) {
+                R.id.bottomNavigationsHome -> {
+                    val intent = Intent(this,HomeAcitivity::class.java)
+                    startActivity(intent);
+                    finish();
+                   true
                 }
+                R.id.bottomNavigationsSearch -> {
+                    val toast = Toast.makeText(this,"Clock item clicked",1000)
+                    true
+                }
+                R.id.bottomNavigationProfil -> {
+                    val toast = Toast.makeText(this,"Clock item clicked",1000)
+                    true
+                }
+                R.id.bottomNavigationStopWatchMenuId -> {
+                    val toast = Toast.makeText(this,"Clock item clicked",1000)
+
+                    true
+                }
+                else -> false
+            }
+        }
 
     }
 
@@ -67,5 +64,7 @@ class HomeAcitivity : AppCompatActivity(){
             else -> super.onOptionsItemSelected(item)
         }
     }
+
+
 
 }
