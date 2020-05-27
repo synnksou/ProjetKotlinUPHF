@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "586744901364",
+    "firebase_url": "https://testkotlinauth.firebaseio.com",
+    "project_id": "testkotlinauth",
+    "storage_bucket": "testkotlinauth.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:586744901364:android:088a60d4c7599cd56ef8a1",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "586744901364-meg3uvffb53fi6ogjti7rfjpeuinaum2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCAe-NIeYnPdf7vcsw6wxPSSHcalaQre40"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "586744901364-meg3uvffb53fi6ogjti7rfjpeuinaum2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

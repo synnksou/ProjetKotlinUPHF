@@ -1,9 +1,13 @@
 package com.example.myapplication
 
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.google.firebase.auth.FirebaseAuth
 import com.mongodb.stitch.android.core.Stitch
 import com.mongodb.stitch.android.core.StitchAppClient
 import com.mongodb.stitch.android.services.mongodb.remote.RemoteMongoClient
@@ -20,26 +24,39 @@ class SignupActivity : AppCompatActivity() {
         val editTextEmail = findViewById<EditText>(R.id.editTextEmail)
         val editTextPassword = findViewById<EditText>(R.id.editTextEmail)
         val btn = findViewById<Button>(R.id.btnSignup)
-        Stitch.initializeDefaultAppClient(
-            resources.getString(R.string.my_app_id)
-        )
-        val stitchAppClient = Stitch.getDefaultAppClient()
 
-        stitchAppClient.auth.loginWithCredential(AnonymousCredential())
-            .addOnSuccessListener {
-                System.out.print("yo bg")
-            }
+
+        btn.setOnClickListener {
+            onClickButton(editTextEmail.text.toString(),editTextPassword.text.toString())
+        }
+
+
     }
 
     private fun onClickButton(email:String, password:String) {
-        val client: StitchAppClient = Stitch.initializeDefaultAppClient("kotlins4-eynak")
 
-        val mongoClient: RemoteMongoClient =
-            client.getServiceClient(RemoteMongoClient.factory, "mongodb-atlas")
+        if (email.isEmpty() || password.isEmpty()) {
+            Toast.makeText(this, "Please enter text in email/pw", Toast.LENGTH_SHORT).show()
+            return
+        }
 
-        val coll: RemoteMongoCollection<Document> =
-            mongoClient.getDatabase("<DATABASE>").getCollection("<COLLECTION>")
+        Log.d("MainActivity", "Email is: " + email)
+        Log.d("MainActivity", "Password: $password")
+        
+        FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
+            .addOnCompleteListener {
+                if (!it.isSuccessful) return@addOnCompleteListener
+                // else if successful
+                Log.d("Main", "Successfully created user with uid:")
+                val intent = Intent(this,HomeAcitivity::class.java)
+                startActivity(intent);
+                finish();
 
+            }
+            .addOnFailureListener{
+                Log.d("Main", "Failed to create user: ${it.message}")
+                Toast.makeText(this, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT).show()
+            }
     }
 
 }
