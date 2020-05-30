@@ -7,14 +7,9 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
-import com.firebase.ui.auth.data.model.User
 import com.google.firebase.auth.FirebaseAuth
-import com.mongodb.stitch.android.core.Stitch
-import com.mongodb.stitch.android.core.StitchAppClient
-import com.mongodb.stitch.android.services.mongodb.remote.RemoteMongoClient
-import com.mongodb.stitch.android.services.mongodb.remote.RemoteMongoCollection
-import com.mongodb.stitch.core.auth.providers.anonymous.AnonymousCredential
-import org.bson.Document
+import com.google.firebase.database.FirebaseDatabase
+import kotlinx.android.synthetic.main.layout_signup.*
 
 
 class SignupActivity : AppCompatActivity() {
@@ -33,6 +28,9 @@ class SignupActivity : AppCompatActivity() {
 
 
     }
+    companion object {
+        val TAG = "RegisterActivity"
+    }
 
     private fun onClickButton(email:String, password:String) {
 
@@ -49,6 +47,7 @@ class SignupActivity : AppCompatActivity() {
                 if (!it.isSuccessful) return@addOnCompleteListener
                 // else if successful
                 Log.d("Main", "Successfully created user with uid:")
+                saveUserToFirebaseDatabase(editTextUsername.text.toString(),editTextEmail.text.toString())
                 val intent = Intent(this,HomeAcitivity::class.java)
                 startActivity(intent);
                 finish();
@@ -59,7 +58,20 @@ class SignupActivity : AppCompatActivity() {
                 Toast.makeText(this, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT).show()
             }
     }
+    private fun saveUserToFirebaseDatabase(username: String, email: String) {
+        val uid = FirebaseAuth.getInstance().uid ?: ""
+        val ref = FirebaseDatabase.getInstance().getReference("/Users/$uid")
 
+        val user = User(uid, username,email)
+
+        ref.setValue(user)
+            .addOnSuccessListener {
+                Log.d(TAG, "Finally we saved the user to Firebase Database")
+            }
+            .addOnFailureListener {
+                Log.d(TAG, "Failed to set value to database: ${it.message}")
+            }
+    }
 
 
 
