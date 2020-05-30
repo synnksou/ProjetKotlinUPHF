@@ -7,6 +7,7 @@ import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.firebase.ui.auth.data.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.mongodb.stitch.android.core.Stitch
 import com.mongodb.stitch.android.core.StitchAppClient
@@ -22,7 +23,7 @@ class SignupActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.layout_signup)
         val editTextEmail = findViewById<EditText>(R.id.editTextEmail)
-        val editTextPassword = findViewById<EditText>(R.id.editTextEmail)
+        val editTextPassword = findViewById<EditText>(R.id.editTextPassword)
         val btn = findViewById<Button>(R.id.btnSignup)
 
 
@@ -42,7 +43,7 @@ class SignupActivity : AppCompatActivity() {
 
         Log.d("MainActivity", "Email is: " + email)
         Log.d("MainActivity", "Password: $password")
-        
+
         FirebaseAuth.getInstance().createUserWithEmailAndPassword(email, password)
             .addOnCompleteListener {
                 if (!it.isSuccessful) return@addOnCompleteListener
@@ -58,5 +59,8 @@ class SignupActivity : AppCompatActivity() {
                 Toast.makeText(this, "Failed to create user: ${it.message}", Toast.LENGTH_SHORT).show()
             }
     }
+
+
+
 
 }
