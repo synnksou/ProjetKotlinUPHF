@@ -93,10 +93,6 @@ class PostsListActivity : AppCompatActivity() {
             }
         })
     }
-
-    }
-
-
 }
 
 class PostItem(private val post: Post): Item<ViewHolder>() {
