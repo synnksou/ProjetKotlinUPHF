@@ -53,7 +53,9 @@ class HomeAcitivity : AppCompatActivity(){
                    true
                 }
                 R.id.bottomNavigationsSearch -> {
-                    val toast = Toast.makeText(this,"Clock item clicked",1000)
+                    val intent = Intent(this,PostsListActivity::class.java)
+                    startActivity(intent);
+                    finish();
                     true
                 }
                 R.id.bottomNavigationProfil -> {
