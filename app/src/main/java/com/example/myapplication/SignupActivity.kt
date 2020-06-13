@@ -29,7 +29,7 @@ class SignupActivity : AppCompatActivity() {
 
     }
     companion object {
-        val TAG = "RegisterActivity"
+        const val TAG = "RegisterActivity"
     }
 
     private fun onClickButton(email:String, password:String) {

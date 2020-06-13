@@ -46,6 +46,9 @@ class HomeAcitivity : AppCompatActivity(){
                 }
                 R.id.bottomNavigationProfil -> {
                     val toast = Toast.makeText(this,"Clock item clicked",1000)
+                    val intent = Intent(this,ProfilActivity::class.java)
+                    startActivity(intent);
+                    finish();
                     true
                 }
                 R.id.bottomNavigationStopWatchMenuId -> {
