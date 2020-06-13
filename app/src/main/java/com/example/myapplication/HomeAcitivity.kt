@@ -1,16 +1,22 @@
 package com.example.myapplication
 
 import android.annotation.SuppressLint
+import android.content.ClipDescription
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.widget.Button
+import android.widget.EditText
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.ktx.Firebase
+import kotlinx.android.synthetic.main.layout_signup.*
 
 
 class HomeAcitivity : AppCompatActivity(){
@@ -26,6 +32,12 @@ class HomeAcitivity : AppCompatActivity(){
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.home_layout)
+        val editTitle = findViewById<EditText>(R.id.editTextTextPersonName)
+        val editDescription = findViewById<EditText>(R.id.editTextTextMultiLine)
+        val btn = findViewById<Button>(R.id.button)
+        btn.setOnClickListener {
+            onClickButton(editTitle,editDescription)
+        }
 
         verifyUserIsLoggedIn()
 
@@ -93,6 +105,31 @@ class HomeAcitivity : AppCompatActivity(){
             intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
+    }
+
+    private fun onClickButton(titleEdit:EditText, descriptionEdit:EditText){
+        var title = titleEdit.text.toString()
+        val description = descriptionEdit.text.toString()
+        if (title.isEmpty() || description.isEmpty()) {
+            Toast.makeText(this, "Please enter text in title/description", Toast.LENGTH_SHORT).show()
+            return
+        }
+        val uid = FirebaseAuth.getInstance().uid ?: ""
+        val ref = FirebaseDatabase.getInstance().getReference("/Posts/")
+
+        val post=Post(uid,title,description)
+
+        var newPostRef = ref.push();
+        newPostRef.setValue(post)
+            .addOnSuccessListener {
+                titleEdit.text.clear()
+                descriptionEdit.text.clear()
+                Log.d(SignupActivity.TAG, "Finally we saved the post to Firebase Database")
+            }
+            .addOnFailureListener {
+                Log.d(SignupActivity.TAG, "Failed to push value to database: ${it.message}")
+            }
+
     }
 
 }

@@ -10,4 +10,8 @@
     <string name="recherche">Recherche</string>
     <string name="information">Information</string>
     <string name="accueil">Accueil</string>
+    <string name="description">Description</string>
+    <string name="crer_un_post">Créer un post</string>
+    <string name="cr_ation_d_un_nouveau_post">Création d\'un nouveau post</string>
+    <string name="titre">Titre</string>
 </resources>
