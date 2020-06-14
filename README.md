@@ -8,6 +8,14 @@ You need
 * Android Studio
 * Kotlin
 
+L'application fait
+  * Connection a Une bdd Firebase
+  * Inscription et Connection
+  * Ajouter un Post a la bdd
+  * Profil
+  
+
+
 ## Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.
 
